@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<th:block th:include="/admin/common::head"/>
+<style type="text/css">
+	main #notice{
+	width: 960px;
+    height: 700px;
+    margin-left: 30px;
+    margin-top: 30px;
+	background-color: #f9f9f9;
+	}
+	
+	hr{width: 960px;}
+	.list ul li:nth-child(1){width: 150px;}
+	.list ul li:nth-child(2){width: 350px;}
+	.list ul li:nth-child(3){width: 150px;}
+	.list ul li:nth-child(4){width: 150px;}
+	.list ul li:nth-child(5){width: 150px;}
+	.list ul li:nth-child(6){width: 50px;}
+	.list ul{border-bottom: 1px solid #a9a9a9;	padding: 0.5em 0;}
+	.list{
+		width: 960px;
+		margin-top: 30px;
+	}
+	.list>div>a{text-align: right;}
+	.title{font-weight: 700}
+	.msg{text-align: center;padding: 1em;}
+</style>
+<script th:inline="javascript">
+	 $(function(){
+		 $(".btn-del").click(function(){
+			 var _no=$(this).next().val();
+			 $.ajax({
+				 url:"/admin/notice/"+_no,
+				 type:"delete",
+				 success: function(result){
+					 $.ajax({
+						 url:"/admin/notice/list",
+						 type:"get",
+						 success:function(result){
+							 location.reload();
+						 }
+					 });
+				 }
+			 });
+		 });
+	 });
+</script>
+</head>
+<body>
+	<main>
+		<h1>관리자페이지입니다.</h1>
+		<div class="wrap flex">
+			<th:block th:insert="/admin/common::admin-menu"/>
+			<section id="notice">
+			<div class="wrap">
+				<div class="list">
+					<div style="display: flex; justify-content: flex-end;">
+						<a href="/admin/notice/write"><button>글쓰기</button></a>
+					</div>
+					<ul class="flex title">
+						<li>글번호</li>
+						<li>제목</li>
+						<li>조회수</li>
+						<li>작성자</li>
+						<li>작성일</li>
+						<li>삭제</li>
+					</ul>
+					<!-- 게시판 리스트 정보  -->
+					<ul th:each="dto : ${list}" class="flex">
+						<li th:text="${dto.no}">글번호</li>
+						<li>
+							<a th:href="|/admin/notice/detail/${dto.no}|">
+								<span>[[${dto.subject}]]</span>
+							</a>
+						</li>
+						<li th:text="${dto.readCount}">조회수</li>
+						<li th:text="${dto.writer}">작성자</li>
+						<li th:text="${dto.createdDate.toLocalDate}">작성일</li>
+						<li>
+							<button class="btn-del" style="width: 32px;">삭제</button>
+							<input type="hidden" class="no" th:value="${dto.no}">
+						</li>
+					</ul>
+					<!-- 게시판 리스트가 없을때  -->
+					<div th:if="${#lists.isEmpty(list)}">
+						<p class="msg">게시글이 존재하지 않습니다.</p>
+					</div>
+				</div>
+			</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

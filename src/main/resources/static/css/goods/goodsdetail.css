@@ -1,0 +1,108 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('../css/common.css');
+
+
+main .wrap{
+	width: 1140px;
+	height: 1100px;
+	margin: 10px auto;
+}
+
+main .wrap .content{
+	width: 100%;
+	height: 1100px;
+}
+
+.detail-div{
+	width: 1140px;
+	height: 700px;
+	padding-top: 65px;
+}
+
+.detail-img{
+	text-align: center;
+}
+
+.detail-img a img{
+	width: 456px;
+	height: 456px;
+}
+
+.detail-img-btn{
+	width: 570px;
+	height: 54px;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.detail-info{
+	width: 500px;
+	height: 635px;
+	margin-right: 65px;
+}
+
+.detail-info-title{
+	margin: 20px auto 70px;
+}
+
+.detail-info-title span{
+	color: #333;
+	font-size: 35px;
+	font-weight: 700;
+}
+
+.detail-info-sub{
+	margin-bottom: 20px;
+}
+
+.detail-info-sub span{
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.goods-btn{
+	width: 550px;
+	height: 110px;
+}
+
+.goods-btn a{
+	width: 270px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 50px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	color: #fff;
+	font-size: 16px;
+	
+}
+
+.direct-btn{
+	background-color: #cf102d; 
+}
+
+.cart-btn{
+	background-color: #333;
+}
+
+.grid2{
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 10px;
+}
+
+.grid2 li{
+	width: 275px;
+	height: 39px;
+}
+
+.grid2 li a{
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 16px;
+	color: #333;
+}

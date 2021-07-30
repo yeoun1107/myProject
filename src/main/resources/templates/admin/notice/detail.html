@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<th:block th:include="/admin/common::head"/>
+<style type="text/css">
+	main #notice{
+	width: 960px;
+    height: 700px;
+    margin-left: 30px;
+    margin-top: 30px;
+	background-color: #f9f9f9;
+	}
+	
+	hr{width: 960px;}
+	.list ul li:nth-child(1){width: 150px;}
+	.list ul li:nth-child(2){width: 350px;}
+	.list ul li:nth-child(3){width: 150px;}
+	.list ul li:nth-child(4){width: 150px;}
+	.list ul li:nth-child(5){width: 150px;}
+	.list ul li:nth-child(6){width: 50px;}
+	.list ul{border-bottom: 1px solid #a9a9a9;	padding: 0.5em 0;}
+	.list{
+		width: 960px;
+		margin-top: 30px;
+	}
+	.list>div>a{text-align: right;}
+	.title{font-weight: 700}
+	.msg{text-align: center;padding: 1em;}
+</style> 
+<script type="text/javascript">
+	$(function(){
+		//수정버튼 클릭시 -> 수정할 수 있도록 활성화
+		$(".btn-edit").click(function(){
+			$(this).hide();
+			$(this).next().show();
+			$(this).parents("ul").find("input:disabled").removeAttr("disabled");
+		});
+		//수정취소 버튼 클릭시 -> 수정 비활성화
+		$(".btn-edit-cancel").click(function(){
+			$(this).parent().hide();
+			$(this).parents("li").find(".btn-edit").show();
+			$(this).parents("ul").find("input[type=text]").attr("disabled",true);
+		});
+		//수정완료 버튼 클릭 시 -> DB 수정처리
+		$(".btn-edit-done").click(function(){
+			//수정된 질문과 답변 값을 읽어오는게 우선.  수정될 대상 : pk값 no
+			var subject=$(this).parents("ul").find(".subject").val().trim();
+			var content=$(this).parents("ul").find(".content").val().trim();
+			var no=$(this).parents("ul").find(".no").val();
+			
+			$.ajax({
+				url:"/admin/notice/"+no,
+				data:{"subject":subject,"content":content},        //왼쪽 question은 input의 클래스 이름 속성 , 오른쪽 question은 71라인 변수 값을 받은 var question
+				type:"put",
+				success:function(result){
+					location.reload();
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<main>
+		<h1>게시판 페이지</h1>
+		<div class="wrap flex">
+			<th:block th:insert="/admin/common::admin-menu"/>
+			<section id="notice">
+			<div class="wrap">
+				<a href="/">HOME</a>
+				<a href="/cscenter/notice/notice">게시글리스트</a>
+				<hr>
+				<div>
+					<ul>
+						<li>
+							<span>글번호 : </span>
+							<span th:text="${detail.no}"></span>
+						</li>
+						<li>
+							<span>제목 : </span>
+							<span>
+								<input type="text" class="subject" th:value="${detail.subject}" disabled>
+							</span>
+						</li>
+						<li>
+							<span>조회수 : </span>
+							<span th:text="${detail.readCount}"></span>
+						</li>
+						<li>
+							<span>작성자 : </span>
+							<span th:text="${detail.writer}"></span>
+						</li>
+						<li>
+							<span>작성일 : </span>
+							<span th:text="${detail.createdDate}"></span>
+						</li>
+						<li>
+							<span>내용 : </span>
+							<span>
+								<input type="text" class="content" th:value="${detail.content}" disabled>
+							</span>
+						</li>
+						<li>
+							<button class="btn-edit">수정</button>
+							<span class="btn-edit-able" style="display: none;">
+								<button class="btn-edit-done">수정완료</button>
+								<button class="btn-edit-cancel">수정취소</button>
+							</span>
+							<input type="hidden" class="no" th:value="${detail.no}">
+						</li>
+					</ul>
+				</div>
+				<hr>
+			</div>
+		</section>
+		</div>
+	</main>
+</body>
+</html>

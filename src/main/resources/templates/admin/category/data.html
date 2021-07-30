@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<option value="0">선택</option>
+
+<th:block th:each="dto :${list}">
+<option th:value="${dto.categoryCode}">[[${dto.categoryName}]]</option>
+</th:block>
+</html>

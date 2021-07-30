@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/goods/goodslist.css">
+	<style type="text/css">
+		#goods-list1{
+			cursor: pointer;
+		}
+		
+		#goods-list1>.wrap{
+			position: relative;
+		}
+		
+		#goods-list1>.wrap #category-menu{
+			width: 940px;
+			/* display: none; */
+			background-color: #fff;
+			position: absolute;
+			left: 199px;
+			top: -123px;
+			/* z-index: 100; */
+			padding: 20px;
+			border-top: 1px solid #cf102d;
+		}
+		
+		#goods-list1:hover #category-menu{
+			display: block;
+		}
+		
+		#category-menu{
+			padding: 0.5em 1em;
+		}
+		
+		.cate-sector{
+			margin: 0 50px;
+		}
+		
+		.cate-sector li{
+			margin-bottom: 10px;
+		}
+		
+		.cate-sector li span{
+			color: #cf102d;
+			font-size: 20px;
+    		font-weight: 600;
+		}
+		
+	</style>
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script th:inline="javascript">
+	$(function(){
+        getList(); 
+        getMenu();
+        
+        function getList(){
+            $.ajax({
+               url: "/goods/goods_list",
+               success: function(result){   
+                  $("#result").html(result);   
+               }
+            });
+         } 
+        
+        function getMenu(){
+        	$.ajax({
+        		url:"/goods/menu",
+        		success:function(result){
+        			$("#category-menu").html(result)
+        		}
+        	});
+        }
+     });
+     
+	</script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<h1>고객센터 FAQ 페이지</h1>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/goods">전체상품</a>
+						</li>
+					</ul>
+				</section>
+				<div class="flex" th:fragment="list">
+					<div class="goods-list-left">
+						<section id="goods-list1">
+							<a href="/goods">카테고리</a>
+							<div class="wrap">
+								<div id="category-menu"></div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<section id="goods-list3">
+					<!-- <div style="margin: 0 0 20px 50px;">
+						<a href="/goods">전체상품 목록</a>
+					</div> -->
+					<div id="result" class="goods-list-data grid4">
+						
+					</div>
+				</section>
+			</div>
+		</div>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block> 
+</body>
+</html>

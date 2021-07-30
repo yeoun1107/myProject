@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<th:block th:include="/admin/common::head"/>
+<style type="text/css">
+	#file-input{
+		display: none;
+	}
+	#file-label{
+		display: inline-block;
+		width: 200px;
+		height: 214px;
+		border: 2px dashed aqua;
+		color: aqua;
+		text-align: center;
+		line-height: 214px;
+		font-size: 24px;
+		font-weight: 700;
+		background-color: rgba(0,0,255,0.05);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-image: url("");
+	}
+	
+</style>
+
+</head>
+<body>
+	<main>
+		<h1>관리자페이지입니다.</h1>
+		<div class="wrap flex">
+			<th:block th:insert="/admin/common::admin-menu"/>
+			<section id="admin-content">
+				<h1>내용</h1>
+				<div class="wrap">
+					<p>카테고리 등록페이지</p>
+					<form action="/admin/category" method="post">
+						<p>
+							카테고리 선택
+						</p>
+						<p>
+							<input type="text" name="fname" placeholder="대분류">
+							<input type="text" name="sname" placeholder="중분류">
+							<input type="text" name="tname" placeholder="소분류">
+							<button type="submit">등록</button>
+						</p>
+					</form>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

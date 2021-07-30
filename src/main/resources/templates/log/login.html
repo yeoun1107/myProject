@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<h1>메인영역</h1>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/log/login">로그인</a>
+						</li>
+					</ul>
+				</section>
+				<section id="mem-login">
+					<div>
+						<p class="welcome" th:if="${welcome}">[[${welcome}]]</p>
+						<p class="login-err" th:if="${loginErr}">[[${loginErr}]]</p>
+					</div>
+					<form action="/member/login" method="post">
+						<div class="mlog-title">
+							<h2>로그인</h2>
+						</div>
+						<div class="mlog-form">
+							<div class="account">
+								<input type="text" name="email" placeholder="아이디 (이메일로 입력하세요)">
+							</div>
+							<div class="pass">
+								<input type="password" name="password" placeholder="비밀번호">
+							</div>
+							<div class="btn">
+								<button type="submit">로그인</button>
+							</div>
+						</div>
+						<div class="mlog-link">
+							<ul class="flex between">
+								<li><a href="/log/join">회원가입</a></li>
+								<li><a href="#">아이디찾기</a></li>
+								<li><a href="#">비밀번호찾기</a></li>
+							</ul>
+						</div>
+					</form>
+				</section>
+				
+				<section id="icon-login">
+					<a href="#" class="icons-login"></a>
+				</section>
+				
+				<section id="nomem-login">
+					<form>
+						<div class="nolog-title">
+							<h2>비회원 주문조회</h2>
+						</div>
+						<div class="nolog-title">
+							<span>주문자명과 주문번호를 입력하시면 주문내역을 확인할 수 있습니다.</span>
+						</div>
+						<div class="nolog-form">
+							<div class="account">
+								<input type="text" placeholder="주문자명">
+							</div>
+							<div class="pass">
+								<input type="password" placeholder="주문번호">
+							</div>
+							<div class="btn">
+								<button type="submit">주문조회</button>
+							</div>
+						</div>
+						<div class="mlog-link">
+					</form>
+				</section>
+			</div>
+		</div>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block>  
+</body>
+</html>

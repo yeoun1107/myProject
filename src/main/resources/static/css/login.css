@@ -1,0 +1,196 @@
+@charset "UTF-8";
+
+main .wrap{
+	width: 1140px;
+	height: 1330px;
+	margin: 10px auto;
+}
+
+main .wrap .content{
+	width: 100%;
+	height: 1330px;
+}
+
+#nav-bar{
+	width: 100%;
+	height: 100px;
+}
+
+#nav-bar ul{
+	align-items: center;
+}
+
+#nav-bar ul li{
+	margin: 20px 0 0 20px;
+}
+
+#nav-bar ul li:not(:last-child):after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-bottom: 1px solid #a9a9a9;
+	border-right: 1px solid #a9a9a9;
+	transform: rotate( -45deg );
+	margin-left: 7px;
+}
+
+
+
+
+#mem-login{
+	width: 460px;
+	height: 343px;
+	margin: 0 auto;
+}
+
+#mem-login form{
+	width: 460px;
+	height: 343px;
+	margin: 0 auto 10px;
+	text-align: center;
+}
+
+#mem-login form .mlog-title{
+	width: 460px;
+	height: 45px;
+	margin-bottom: 15px;
+}
+#mem-login form .mlog-title h2{
+	font-size: 30px;
+	font-weight: 700;
+}
+
+#mem-login form .mlog-form{
+	width: 460px;
+	height: 240px;
+}
+#mem-login form .mlog-form div{
+	padding: 10px 0;
+}
+#mem-login form .mlog-form .account input{
+	padding-left: 30px;
+	font-size: 16px;
+	color: #999;
+}
+#mem-login form .mlog-form .pass input{
+	padding-left: 30px;
+	font-size: 16px;
+	color: #999;
+}
+
+#mem-login form .mlog-form div input, button{
+	width: 460px;
+	height: 60px;
+	outline: none;
+	border: 1px solid #a9a9a9;
+}
+#mem-login form .mlog-form div input:hover{
+	border: 1px solid #000;
+}
+
+#mem-login form .mlog-form div button{
+	background-color: #cf102d;
+	font-size: 20px;
+	color: #fff;
+}
+
+#mem-login form .mlog-link{
+	width: 460px;
+	height: 24px;
+}
+
+#mem-login form .mlog-link ul li a{
+	margin: 0 5px;
+	color: #a9a9a9;
+	font-size: 16px;
+}
+
+#mem-login form .mlog-link ul li:not(:last-child):after{
+	content: "|";
+	color: #a9a9a9;
+	font-size: 16px;
+	font-weight: 200;
+	margin: 0 45px;
+}
+
+
+#icon-login{
+	width: 460px;
+	height: 463px;
+	margin: 0 auto;
+}
+#icon-login .icons-login{
+	width: 460px;
+	height: 463px;
+	display: block;
+	background-image: url("../images/login_icons.jpg");
+}
+
+
+#nomem-login{
+	width: 100%;
+	height: 333px;
+}
+
+#nomem-login{
+	width: 460px;
+	height: 343px;
+	margin: 0 auto;
+	border-bottom: 1px solid #a9a9a9;
+}
+
+#nomem-login form{
+	width: 460px;
+	height: 343px;
+	margin: 0 auto 10px;
+	text-align: center;
+}
+
+#nomem-login form .nolog-title{
+	width: 460px;
+	height: 45px;
+	margin: 20px 0 10px 0;
+}
+#nomem-login form .nolog-title h2{
+	font-size: 30px;
+	font-weight: 700;
+}
+#nomem-login form .nolog-title span{
+	font-size: 16px;
+	color: #999;
+}
+
+#nomem-login form .nolog-form{
+	width: 460px;
+	height: 240px;
+}
+#nomem-login form .nolog-form div{
+	padding: 10px 0;
+}
+#nomem-login form .nolog-form .account input{
+	padding-left: 30px;
+	font-size: 16px;
+	color: #999;
+}
+#nomem-login form .nolog-form .pass input{
+	padding-left: 30px;
+	font-size: 16px;
+	color: #999;
+}
+
+#nomem-login form .nolog-form div input, button{
+	width: 460px;
+	height: 60px;
+	outline: none;
+	border: 1px solid #a9a9a9;
+}
+#nomem-login form .nolog-form div input:hover{
+	border: 1px solid #000;
+}
+
+#nomem-login form .nolog-form div button{
+	background-color: #333;
+	font-size: 20px;
+	color: #fff;
+}

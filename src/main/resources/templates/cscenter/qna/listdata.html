@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<style type="text/css">
+		dl dt{
+		    width: 910px;
+		    height: 50px;
+		    margin: 20px 0 0 20px;
+		    border-bottom: 1px solid #a9a9a9;
+		    padding-bottom: 80px;
+		}
+		
+		dl dt .csqna{
+			display: inline-block;
+			background-image: url("../../images/csqna.png");
+			background-position:center;
+			background-repeat:no-repeat;
+			background-size:cover;
+			width: 40px;
+			height: 40px;
+			margin-right: 10px;
+		}
+		
+		dl dt span{
+			padding-bottom: 50px;
+		}
+		
+		dl dt .question{
+			padding-bottom: 50px;
+			padding-left: 20px;
+		}
+		
+		dl dd{
+		    width: 910px;
+		    height: 60px;
+		    margin-left: 20px;
+		    padding-top: 15px;
+		    border-bottom: 1px solid #a9a9a9;
+		    vertical-align: middle;
+		    background-color: #e9e9e9;
+		}
+		
+		#pagging{
+			width: 910px;
+		    height: 60px;
+		    margin: 30px auto;
+		    text-align: center;
+		}
+		
+		#pagging button{
+			width: 35px;
+		    height: 35px;
+		    font-size: 16px;
+		    font-weight: 600;
+		    background-color: #e9e9e9;
+		    border: 1px solid #a9a9a9;
+		    color: #333;
+		}
+	</style>
+</head>
+<p th:if="${#lists.isEmpty(list)}" style="padding: 30px; text-align: center;">
+	데이터가 존재하지 않습니다.
+</p>
+<dl th:each="dto,i :${list}">
+	<dt>
+		<a href="#" class="csqna"></a>
+		<span>[[${(i.count)+(pi.size*(pi.page-1))}]]</span>
+		<span th:text="${dto.division}">구분</span>
+		<span class="question" th:text="${dto.question}">질문</span>
+	</dt>
+	<dd th:text="${dto.answer}">
+		답변
+	</dd>
+</dl>
+<div id="pagging" th:if="${not #lists.isEmpty(list)}">
+	<span th:each="pno :${#numbers.sequence(pi.from, pi.to)}">
+		<button type="button">&nbsp;&nbsp;[[${pno}]]&nbsp;&nbsp;</button>
+	</span>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//$(".listdata dl dd").hide();
+		$(".listdata dl dt").click(function(){
+			var target=$(this).next();
+			target.toggleClass("select");
+			
+			//위 target을 제외한 다른 모든 dd는 'select' 클래스 제거
+			$(".listdata dl dd").not(target).removeClass("select");
+		});
+		
+		$("#pagging button").click(function(){
+			 pno=parseInt($(this).text());
+			 faqList(div)
+		});
+	});
+</script>
+</html>

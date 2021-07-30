@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/csscenter/notice/notice.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/cscenter/qna/list">고객센터</a>
+						</li>
+						<li>
+							<a href="/cscenter/notice/notice">공지사항</a>
+						</li>
+					</ul>
+				</section>
+				<th:block th:insert="~{cscenter/qna/list :: list}"></th:block>
+			</div>
+		</div>
+		
+		<section id="notice">
+			<div class="wrap">
+				<a href="/">HOME</a>
+				<a href="/cscenter/notice/notice">게시글리스트</a>
+				<hr>
+				<div>
+					<ul>
+						<li>
+							<span>글번호 : </span>
+							<span th:text="${detail.no}"></span>
+						</li>
+						<li>
+							<span>제목 : </span>
+							<span th:text="${detail.subject}"></span>
+						</li>
+						<li>
+							<span>조회수 : </span>
+							<span th:text="${detail.readCount}"></span>
+						</li>
+						<li>
+							<span>작성자 : </span>
+							<span th:text="${detail.writer}"></span>
+						</li>
+						<li>
+							<span>작성일 : </span>
+							<span th:text="${detail.createdDate}"></span>
+						</li>
+						<li>
+							<span>내용 : </span>
+							<span th:text="${detail.content}"></span>
+						</li>
+					</ul>
+				</div>
+				<hr>
+				<script type="text/javascript">
+					$(function(){
+						getReplies();
+						$("#btn-reply").click(replyWrite);
+					});
+					
+					// 댓글 읽어오는 함수 (ajax처리)
+					function getReplies(){
+						$.ajax({
+							url:"/cscenter/notice/detail/"+$("#bno").val()+"/reply",
+							success: function(result){
+								$("#reply-list").html(result);
+							}
+						});
+					}
+					
+					//댓글등록 처리하는 함수 (ajax처리)
+					function replyWrite(){
+						//var reply=$("#reply").val();
+						//var writer=$("#writer").val();
+						
+						$.ajax({
+							/* url:"/reply/[[${detail.no}]]", */
+							url:"/cscenter/notice/detail/"+$("#bno").val()+"/reply",
+							type: "post",
+							data:{
+								reply : $("#reply").val(), 
+								writer : $("#writer").val()
+								},
+							success:function(result){
+								// 댓글 등록 후 댓글 다시 갖고오기 위해
+								getReplies();  // 댓글 가져오는 함수 호출
+							}
+						});
+					}
+				</script>
+				<div>
+					<input id="bno" type="hidden" th:value="${detail.no}">
+					<input id="reply" type="text" placeholder="댓글 입력란">
+					<input id="writer" type="text" th:value="${#authentication.principal.name}" disabled>
+					<button id="btn-reply">댓글 등록</button>
+				</div>
+				<div id="reply-list">
+				</div>
+			</div>
+		</section>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block> 
+</body>
+</html>

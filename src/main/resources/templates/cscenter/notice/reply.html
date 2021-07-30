@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<!-- 게시판 리스트 정보  -->
+<ul th:each="replyDto : ${replies}" class="flex" style="margin-top: 20px;">
+	<li th:text="${replyDto.no}" style="width: 80px;">댓글번호</li>   <!-- 글씨는 어차피 덮어씌워져서 출력 안됨 -->
+	<li th:text="${replyDto.reply}" style="width: 250px;">댓글</li>
+	<li style="width: 250px; display: flex;">
+		<p th:text="${replyDto.writer}" style="margin-right: 100px;">작성자</p>
+		<p th:text="${replyDto.createdDate.toLocalDate}">작성일</p>
+	</li>
+</ul>
+				

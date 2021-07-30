@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/join.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="join.js"></script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<h1>메인영역</h1>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/log/join">회원가입</a>
+						</li>
+						<li>
+							<a href="#">정보입력</a>
+						</li>
+					</ul>
+				</section>
+				<section id="join-title">
+					<div class="title-box">
+						<div>
+							<span class="jt">정보입력</span>
+							<span class="subjt">회원가입을 위해 정보를 입력해주세요.</span>
+						</div>
+					</div>
+				</section>
+				
+				<section id="join-nav">
+					<div class="nav-box flex around">
+						<div>
+							<span class="box-icon"></span>
+							<span class="nav-con">약관동의</span>
+						</div>
+						<div>
+							<span class="box-icon-now"></span>
+							<span class="nav-con">정보입력</span>
+						</div>
+						<div>
+							<span class="box-icon2"></span>
+							<span class="nav-con">가입완료</span>
+						</div>
+					</div>
+				</section>
+				
+				<script type="text/javascript">
+				$(function(){
+					$("#email").keyup(function(){
+						var inputId=$(this).val().trim();
+						if(inputId.length<4){					// 입력된 값의 길이정보
+							$("#email-msg").text("* 아이디는 최소 4자리 이상 이어야 합니다.");
+							$("#email-msg").css("color","red");
+						}else{
+							//허용되는 길이 - 중복체크
+							$.ajax({
+								url:"/member/check",
+								data: {email: inputId},
+								type:"post",
+								success: function(result){
+									if(result){
+										$("#email-msg").text("* 사용가능 여부 버튼을 눌러주세요");
+										$("#email-msg").css("color","green");
+									}else{
+										$("#email-msg").text("* 이미 존재하는 이메일 입니다.");
+										$("#email-msg").css("color","red");
+									}
+								}
+							});
+						}
+					});
+					/* *******************************  이메일 정규식 검사  ********************************* */
+					verifyEmail=function(){
+						var emailVal=$("#email").val();
+						var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+						if (emailVal.match(regExp) != null) { 
+							alert('올바른 이메일 형식입니다. 사용가능합니다.'); 
+						} else { 
+							alert('이메일 형식에 맞게 다시 입력하여 주세요.'); 
+						} 
+					};
+					/* ********************************************************************************** */
+				});
+				</script>
+				<section id="join-form">
+					<form action="/member/join" method="post">
+						<table>
+							<tr>
+								<td class="box">
+									<input type="text" name="email" id="email" placeholder="아이디(이메일 > 예 : yun@yeoun.com)">
+									<button type="button" onclick="verifyEmail()">사용가능 여부 확인</button>
+								</td>
+								<span id="email-msg"></span>
+							</tr>
+							<tr>
+								<td class="fullbox"> 
+									<input type="password" name="password" placeholder="비밀번호(영문+숫자 조합 10~16자리 이내)">
+								</td>
+							</tr>
+							<tr>
+								<td class="fullbox">
+									<input type="password" placeholder="비밀번호 확인">
+								</td>
+							</tr>
+							<tr>
+								<td class="fullbox">
+									<input type="text" name="name" placeholder="이름을 입력해주세요">
+								</td>
+							</tr>
+							<tr>
+								<td class="checkgender">
+									<label>
+										<span class="round-icon"></span>
+										<input type="radio" name="gender" value="male">남성
+									</label>
+									<label>
+										<span class="round-icon"></span>
+										<input type="radio" name="gender" value="female">여성
+									</label>
+								</td>
+							</tr>
+							<tr class="birthbox flex center">
+								<td class="birth">
+									<input type="text" name="birth" placeholder="생년월일 6자리를 입력하세요">
+								</td>
+							</tr>
+							<tr>
+								<td class="checkbirth">
+									<label>
+										<span class="round-icon"></span>
+										<input type="radio" name="checkbirth" value="solar">양력
+									</label>
+									<label>
+										<span class="round-icon"></span>
+										<input type="radio" name="checkbirth" value="lunar">음력
+									</label>
+								</td>
+							</tr>
+							<tr class="phonebox flex center">
+								<td class="phone">
+									<input type="text" name="phone" placeholder=" 전화번호 입력 (ㅡ 없이 입력하세요)">
+								</td>
+							</tr>
+						</table>
+						<section id="join-button">
+							<div class="join-button-box">
+								<div class="back-button">
+									<a href="/">뒤로</a>
+								</div>
+								<div class="decide-button">
+									<button type="submit">가입하기</button>
+								</div>
+							</div>
+						</section>
+					</form>
+					
+				</section>
+				
+				
+			</div>
+		</div>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block>  
+</body>
+</html>

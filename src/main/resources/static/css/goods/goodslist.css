@@ -1,0 +1,147 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('../css/common.css');
+
+
+main .wrap{
+	width: 1140px;
+	/* height: 1500px; */
+	margin: 10px auto;
+}
+
+main .wrap .content{
+	width: 100%;
+	height: 1500px;
+}
+
+#nav-bar{
+	width: 100%;
+	height: 100px;
+}
+
+#nav-bar ul{
+	align-items: center;
+}
+
+#nav-bar ul li{
+	margin: 20px 0 0 20px;
+}
+
+#nav-bar ul li:not(:last-child):after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-bottom: 1px solid #a9a9a9;
+	border-right: 1px solid #a9a9a9;
+	transform: rotate( -45deg );
+	margin-left: 7px;
+}
+
+.goods-list-left{
+	width: 200px;
+	height: 200px;
+}
+
+main .wrap .content #goods-list1{
+	width: 198px;
+	height: 200px;
+	border-bottom: 1px solid #a9a9a9;
+	background-color: #cf102d;
+}
+
+main .wrap .content #goods-list1 a{
+	display: block;
+	font-size: 30px;
+	font-family: 'Roboto','Noto Sans KR', sans-serif;
+	font-weight: 600;
+	color: #fff;
+	padding-top: 70px;
+	text-align: center;
+}
+
+main .wrap .content #goods-list2{
+	width: 200px;
+	height: 98px;
+	margin-top: 10px;
+	font-family: 'Roboto','Noto Sans KR', sans-serif;
+}
+
+main .wrap .content #goods-list2 .goods-title{
+	height: 98px;
+}
+
+main .wrap .content #goods-list2 .goods-title ul li{
+	margin-top: 33px;
+	text-align: center;
+}
+
+main .wrap .content #goods-list2 .goods-title ul li a:after{
+	content:"";
+	display: block;
+	background-color: #cf102d;
+	width: 160px;
+	height: 3px;
+	margin: 3px auto 0;
+	transform: scaleX(0);
+	transition: transform .25s ease-in-out;
+}
+
+main .wrap .content #goods-list2 .goods-title ul li a:hover:after{
+	transform: scaleX(1);
+}
+
+main .wrap .content #goods-list2 .goods-title ul li a{
+	color: #666;
+	font-size: 20px;
+}
+
+#goods-list3{
+	width: 1140px;
+	height: 700px;
+	margin: 0 auto;
+	border-top: 1px solid #cf102d;
+	padding-top: 30px;
+}
+
+#goods-list3>div>a{
+	font-weight: 600;
+	font-size: 30px;
+}
+
+.grid4{
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	grid-gap: 15px;
+}
+
+.grid4 li{
+	width: 238px;
+	height: 385px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 17px;
+}
+
+.grid4 li:hover{
+	border: 1px solid red;
+}
+
+.grid-4 li img{
+	display: block;
+	width: 310px;
+	height: 250px;
+}
+
+.grid-4 li div{
+	display: inline-block;
+	width: 100%;
+	margin: 0 auto;
+}
+
+
+
+
+

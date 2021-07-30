@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<ul class="flex between" style="margin-bottom: 20px; padding-bottom:10px; border-bottom: 1px solid #a9a9a9;">
+	<li>관리번호</li>
+	<li style="width: 208px;">이미지</li>
+	<li style="width: 150px;">상품이름</li>
+	<li>원 판매가</li>
+	<li>할인가</li>
+	<li>할인율</li>
+	<li>현재 판매가</li>
+	<li>잔여수량</li>
+	<li>추천여부</li>
+	<li>삭제</li>
+</ul>	
+	<!-- list data -->
+<ul class="flex between" th:each="dto : ${list}">
+	<li th:text="${dto.no}" style="width: 64px;">관리번호</li>
+	<li><img th:src="${dto.fileUrl + dto.fileName}"></li>
+	<li th:text="${dto.title}" style="width: 150px;">상품이름</li>
+	<li th:text="${dto.price}" style="width: 69px;">원 판매가</li>
+	<li th:text="${dto.saleprice}" style="width: 48px;">할인가</li>
+	<li th:text="${dto.salerate}" style="width: 48px;">할인율</li>
+	<li th:text="${dto.price-dto.saleprice}" style="width: 85px;">현재 판매가</li>
+	<li th:text="${dto.quantity}" style="width: 64px;">잔여수량</li>
+	<!-- <li th:text="${dto.recommend}">추천여부</li> -->
+	<li>
+		<input type="checkbox" name="recommend" id="recommend" th:checked="${dto.recommend}" style="width: 64px;" />
+		<input type="hidden" class="recommend" th:value="${dto.recommend}">
+	</li>
+	<li>
+		<button class="btn-del" style="width: 32px;">삭제</button>
+		<input type="hidden" class="no" th:value="${dto.no}">
+	</li>
+</ul>
+<script type="text/javascript">
+$(".btn-del").click(function(){
+	 var _no=$(this).next().val();
+	 $.ajax({
+		 url:"/admin/product/"+_no,
+		 type:"delete",
+		 success: function(result){
+			 $.ajax({
+				 url:"/admin/product/list",
+				 type:"get",
+				 success:function(result){
+					 location.reload();
+				 }
+			 });
+		 }
+	 });
+});
+
+$("input:checkbox").change(function(){
+	var no=$(this).parents("ul").find(".no").val();
+	
+	if( $(this).prop('checked') ){
+		/* $(this).val(true); */
+	 	$.ajax({
+	 		url:"/admin/product/"+no,
+	 		data:{"recommend":true},
+	 		type:"put",
+	 		success:function(result){
+	 			location.reload();
+	 		}
+	 	});
+	}else{
+		/* $(this).val(false); */
+		$.ajax({
+	 		url:"/admin/product/"+no,
+	 		data:{"recommend":false},
+	 		type:"put",
+	 		success:function(result){
+	 			location.reload();
+	 		}
+	 	});
+	}
+	
+});
+</script>
+</html>

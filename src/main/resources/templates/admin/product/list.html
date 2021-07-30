@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<th:block th:include="/admin/common::head"/>
+	<style type="text/css">
+		.between{
+			justify-content: space-between;
+		}
+		#admin-content{
+			padding: 50px;
+		}
+		#result>ul li{
+			text-align: center;
+		}
+		
+		#product-menu-title{
+			cursor: pointer;
+		}
+		
+		#product-menu-title>.wrap{
+			position: relative;
+		}
+		
+		#product-menu-title>.wrap #product-menu{
+			display: none;
+			background-color: rgba(255,255,255,0.75);
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 100;
+			padding: 20px;
+			border: 1px solid #e9e9e9;
+		}
+		
+		#product-menu-title:hover #product-menu{
+			display: block;
+		}
+		
+		#product-menu li{
+			padding: 0.5em 1em;
+		}
+		
+		.second{
+			border-left: 1px solid #e9e9e9;
+		}
+	</style>
+	<script th:inline="javascript">
+		 $(function(){
+			 getList();
+			 getMenu();
+			 
+			 function getList(){
+				 $.ajax({
+					 url:"/admin/product/list",
+					 success:function(result){
+						 $("#result").html(result);
+					 }
+				 });
+			 }
+			 
+			 
+			 
+			 /* 관리자페이지 상품목록 뿌려주기 ajax 대신
+			 function getList(){
+				 $.ajax({
+					 url:"/admin/product/all",
+					 success: function(result){
+						 $("#result").html();
+					 }
+				 });
+			 }
+			 */
+			 
+			 function getMenu(){
+				 $.ajax({
+					 url:"/admin/product/menu",
+					 success:function(result){
+						 $("#product-menu").html(result)
+					 }
+				 });
+			 }
+			 
+		 });
+	</script>
+</head>
+<body>
+	<main>
+		<h1>관리자페이지입니다.</h1>
+		<div class="wrap flex">
+			<th:block th:insert="/admin/common::admin-menu"/>
+			<section id="admin-content">
+				<h1>내용</h1>
+				<div class="wrap">
+					<p style="margin-bottom: 20px;">판매상품 리스트페이지 입니다.</p>
+					<div id="product-menu-title">
+						<p>메뉴</p>
+						<div class="wrap">
+							<div id="product-menu"></div>
+						</div>
+					</div>	
+					<div id="result" style="width: 1300px;">
+						
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

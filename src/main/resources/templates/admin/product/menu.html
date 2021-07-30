@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<div class="flex">
+	<ul>
+		<li th:each="dto : ${list}" th:value="${dto.categoryCode}" class="first-ca">
+			<span>[[${dto.categoryName}]]</span>
+		</li>
+	</ul>
+	<div class="first-next"></div>
+</div>
+<script th:inline="javascript">
+	var first=0;
+	var second=0;
+	var third=0;
+	$(function(){
+		first=0;
+		// 메뉴 클릭했을 때
+		$(".first-ca").click(cateClicked);
+		
+		// 메뉴에 마우스가 올라왔을 때 서브메뉴 보여주기
+		$(".first-ca").mouseover(function(){
+			first=$(this).val();
+			$.ajax({
+				url: "/admin/product/menu/"+first,
+				success:function(result){
+					$(".first-next").html(result);
+				}
+			});
+			
+		});
+	});
+	
+	function cateClicked(){
+		var code=first+second+third;
+		$.ajax({
+			url:"/admin/product/search/"+code,
+			success:function(result){
+				$("#result").html(result);
+			}
+		});
+		
+	}
+
+</script>
+</html>

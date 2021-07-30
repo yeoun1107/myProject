@@ -1,0 +1,190 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('../css/common.css');
+
+
+main .wrap{
+	width: 1140px;
+	height: 1100px;
+	margin: 10px auto;
+}
+
+main .wrap .content{
+	width: 100%;
+	height: 1100px;
+}
+
+#nav-bar{
+	width: 100%;
+	height: 100px;
+}
+
+#nav-bar ul{
+	align-items: center;
+}
+
+#nav-bar ul li{
+	margin: 20px 0 0 20px;
+}
+
+#nav-bar ul li:not(:last-child):after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-bottom: 1px solid #a9a9a9;
+	border-right: 1px solid #a9a9a9;
+	transform: rotate( -45deg );
+	margin-left: 7px;
+}
+
+.faq-left{
+	width: 200px;
+	height: 700px;
+	border-left: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+}
+
+main .wrap .content #faq1{
+	width: 198px;
+	height: 66px;
+	border-bottom: 1px solid #a9a9a9;
+	background-color: #cf102d;
+}
+
+main .wrap .content #faq1 div{
+	padding-top: 10px;
+	text-align: center;
+}
+
+main .wrap .content #faq1 div a{
+	font-size: 30px;
+	font-family: 'Roboto','Noto Sans KR', sans-serif;
+	font-weight: 500;
+	color: #fff;
+}
+
+main .wrap .content #faq2{
+	width: 200px;
+	height: 98px;
+	margin-top: 10px;
+	font-family: 'Roboto','Noto Sans KR', sans-serif;
+}
+
+main .wrap .content #faq2 .faq-title{
+	height: 98px;
+}
+
+main .wrap .content #faq2 .faq-title ul li{
+	margin-top: 33px;
+	text-align: center;
+}
+
+main .wrap .content #faq2 .faq-title ul li .ti1{
+	color: #cf102d;
+}
+
+main .wrap .content #faq2 .faq-title ul li a:after{
+	content:"";
+	display: block;
+	background-color: #cf102d;
+	width: 70px;
+	height: 3px;
+	margin: 3px auto 0;
+	transform: scaleX(0);
+	transition: transform .25s ease-in-out;
+}
+
+main .wrap .content #faq2 .faq-title ul li a:hover:after{
+	transform: scaleX(1);
+}
+
+main .wrap .content #faq2 .faq-title ul li a{
+	color: #666;
+	font-size: 20px;
+}
+
+main .wrap .content #faq3 .faq-search{
+	width: 930px;
+	height: 66px;
+	margin-left: 10px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+main .wrap .content #faq3 .faq-search .faq-wrap-input{
+	margin: 0 70px 0 0;
+}
+
+.faq-wrap-input .faq-input{
+	border: 1px solid #e8e8e8;
+    width: 100%;
+    height: 60px;
+    margin: 3px;
+    background: #fff;
+    padding: 0 30px;
+    font-size: 16px;
+    color: #999;
+}
+
+.faq-button{
+	position: absolute;
+    top: 3px;
+    right: 0;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: #333 url(../../../images/faq-button.png) no-repeat center;
+    border: 0;
+    text-align: center;
+    font-size: 0;
+    cursor: pointer;
+}
+
+main .wrap .content #faq3 .faq-subtitle ul li.choice{
+	color: #333;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+#faq3{
+	width: 940px;
+	height: 700px;
+}
+#faq3 .faq-subtitle{
+	margin-left: 10px;
+}
+
+#sub{
+	height: 66px;
+    align-items: center;
+    border-bottom: 1px solid #a9a9a9;
+    background-color: #e9e9e9;
+}
+
+#sub li{
+	cursor: pointer;
+}
+
+
+main .wrap .content #faq3 .faq-subtitle .listdata{
+	margin-top: 30px;
+}
+
+.listdata dl dd{
+	display: none;
+}
+
+.listdata .select{
+	display: block;
+}
+
+
+
+
+
+
+
+

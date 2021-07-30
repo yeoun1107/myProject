@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<ul th:each="dto :${list}">
+	<li>
+		<a th:href="|/goods/goods_list/${dto.no}|">
+			<img th:src="${dto.fileUrl + dto.fileName}">
+		</a>
+		<div>
+			<img src="../images/new.png" style="margin: 10px 0;">
+		</div> 
+		<div>
+			<span th:text="${dto.title}"></span>
+			<div style="margin-top: 10px;">	
+				<span style="color: #eb6715;">상품가 :  </span>
+				<!-- <span th:text="${dto.price}"></span> -->
+				<span th:text="${#numbers.formatDecimal(dto.price, 0, 'COMMA', 0, 'POINT')}"></span>
+				<span>원</span>
+			</div>
+			<div>
+				<span style="color: #eb6715;">할인가 :  </span>
+				<span th:text="${#numbers.formatDecimal(dto.price-dto.saleprice, 0, 'COMMA', 0, 'POINT')}"></span>
+				<span>원</span>
+			</div>	
+			<div>
+				<span style="color: #eb6715;">잔여수량 :  </span>
+				<span th:text="${dto.quantity}"></span>
+				<span>개</span>
+			</div>
+		</div>
+	</li>
+</ul>
+</html>

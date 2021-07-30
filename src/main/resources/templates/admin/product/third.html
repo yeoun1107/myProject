@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<div class="flex">
+	<ul>
+		<li th:each="dto : ${list}" th:value="${dto.categoryCode}" class="third-ca">
+			<span>[[${dto.categoryName}]]</span>
+		</li>
+	</ul>
+	<div class="third-next"></div>
+</div>
+<script th:inline="javascript">
+	$(function(){
+		third=0;
+		$(".third-ca").click(function(){
+			third=$(this).val();
+			cateClicked();
+		});
+	});
+
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/csscenter/notice/notice.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/cscenter/qna/list">고객센터</a>
+						</li>
+						<li>
+							<a href="/cscenter/notice/notice">공지사항</a>
+						</li>
+					</ul>
+				</section>
+				<th:block th:insert="~{cscenter/qna/list :: list}"></th:block>
+			</div>
+		</div>
+		
+		<section id="notice">
+			<div class="wrap">
+				<div class="list">
+					<!-- <div class="flex end">
+						<a href="/cscenter/notice/write"><button>글쓰기</button></a>
+					</div> -->
+					<ul class="flex title">
+						<li>글번호</li>
+						<li>제목</li>
+						<li>조회수</li>
+						<li>작성자</li>
+						<li>작성일</li>
+					</ul>
+					<!-- 게시판 리스트 정보  -->
+					<ul th:each="dto : ${list}" class="flex">
+						<li th:text="${dto.no}">글번호</li>
+						<li>
+							<a th:href="|/cscenter/notice/detail/${dto.no}|">
+								<span>[[${dto.subject}]]</span>
+							</a>
+						</li>
+						<li th:text="${dto.readCount}">조회수</li>
+						<li th:text="${dto.writer}">작성자</li>
+						<li th:text="${dto.createdDate.toLocalDate}">작성일</li>
+					</ul>
+					<!-- 게시판 리스트가 없을때  -->
+					<div th:if="${#lists.isEmpty(list)}">
+						<p class="msg">게시글이 존재하지 않습니다.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block> 
+</body>
+</html>

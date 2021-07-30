@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+	<meta charset="UTF-8">
+	<title>윤여운 spring web 프로젝트</title>
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(window).scroll(function(){
+				if(window.scrollY>116){
+					$("#gnb").css({"position": "fixed", "top": "0"})
+				}else{
+					$("#gnb").css({"position": "relative"})
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<header th:fragment="header">
+		<h1>헤더</h1>
+		<div class="wrap">
+			<section id="unb">
+				<h1>user메뉴</h1>
+				<div class="wrap view-size flex column ceter">
+					<ul class="flex end">
+						<li sec:authorize="isAnonymous()"><a  href="/log/login">로그인</a></li>
+						<li sec:authorize="isAuthenticated()">
+								<span sec:authentication="principal.email"></span>
+								<a href="/logout">로그아웃</a>
+								<a href="/admin/list" sec:authorize="hasRole('ADMIN')">*관리자페이지</a>
+						</li>
+						<li><a href="/log/join">회원가입</a></li>
+						<li><a href="/cscenter/qna/list">고객센터</a></li>
+						<li><a href="#">장바구니</a></li>
+					</ul>
+				</div>
+			</section>
+			<nav id="gnb">
+				<h1>메인메뉴</h1>
+				<div class="wrap view-size flex between">
+					<div class="left flex">
+						<div class="main-logo">
+							<a href="/"></a>
+						</div>
+						<ul class="flex">
+							<li class="h-main" style="margin-left: 30px;"><a href="#">BASEBALL</a>
+								<div class="h-submenu flex center">
+									<ul>
+										<li>
+											<a href="#" class="sub-tit" style="color:#cf102d;">Wilson A2K</a>
+										</li>
+										<li class="sub-sort">
+											<a href="#" class="sub-tit" style="color:#ffcc00;">Wilson A2000</a>
+										</li>
+										<!-- <li><a href="#">2021 KOREA A2K</a></li>
+										<li class="sub-sort"><a href="#">2021 한정판 A2000</a></li> -->
+										<li><a href="/goods" style="color:green; font-weight:700; font-size:18px;">전체상품 보기</a></li>
+										<li><a href="#" style="color:blue; font-weight:700; font-size:18px;">BEST</a></li>
+										<li><a href="#" style="color:red; font-weight:700; font-size:18px;">SALE</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">글러브</a></li>
+										<li><a href="#">A2K 글러브</a></li>
+										<li><a href="#">A2000 글러브</a></li>
+										<li><a href="#">Field Player 글러브</a></li>
+										<li><a href="#">포수, 1루수 미트</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">배트</a></li>
+										<li><a href="#">드마리니</a></li>
+										<li><a href="#">루이빌슬러거</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">보호장비</a></li>
+										<li><a href="#">타자용</a></li>
+										<li><a href="#">포수용</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="h-main"><a href="#">TENNIS</a>
+								<div class="h-submenu flex center">
+									<ul>
+										<li class="sub-sort">
+											<a href="#" class="sub-tit">
+												<span style="color:#cf102d;">커</span><span style="color:#5cc510;">스</span><span style="color:#00acdc;">텀</span>
+											서비스
+											</a>
+										</li>
+										<li><a href="#">프로스태프 시리즈</a></li>
+										<li class="sub-sort"><a href="#">블레이드 시리즈</a></li>
+										<li><a href="#" style="color:blue; font-weight:700; font-size:18px;">BEST</a></li>
+										<li><a href="#" style="color:red; font-weight:700; font-size:18px;">SALE</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">라켓</a></li>
+										<li><a href="#">프로스태프</a></li>
+										<li><a href="#">블레이드</a></li>
+										<li><a href="#">클래시</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">가방</a></li>
+										<li><a href="#">15팩(3단 가방)</a></li>
+										<li><a href="#">12팩(3단 가방)</a></li>
+										<li><a href="#">9팩(2단 가방)</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">신발</a></li>
+										<li><a href="#">남성</a></li>
+										<li><a href="#">여성</a></li>
+										<li><a href="#">주니어</a></li>
+									</ul>
+								</div>
+							</li>	
+							<li class="h-main"><a href="#">BALLS</a>
+								<div class="h-submenu flex center">
+									<ul style="margin-left:-335px;">
+										<li><a href="#">전체보기</a></li>
+										<li><a href="#">축구공</a></li>
+										<li><a href="#">야구공</a></li>
+										<li><a href="#">농구공</a></li>
+										<li><a href="#">ACC</a></li>
+										<li><a href="#" style="color:blue; font-weight:700; font-size:18px;">BEST</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="h-main"><a href="#">CUSTOM</a>
+								<div class="h-submenu flex center">
+									<ul style="margin-left:-100px;">
+										<li><a href="#" class="sub-tit">야구 글러브</a></li>
+										<li><a href="#">ORDER 서비스</a></li>
+										<li><a href="#" class="sub-tit">테니스 라켓</a></li>
+										<li><a href="#">커스텀 서비스</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="h-main"><a href="#">BRAND</a>
+								<div class="h-submenu flex center">
+									<ul style="margin-left:110px;">
+										<li><a href="#" class="sub-tit">Wilson Baseball</a></li>
+										<li><a href="#">윌슨 플레이어</a></li>
+										<li><a href="#">2021 무키 베츠 A2K GM 글러브</a></li>
+										<li><a href="#">윌슨 글러브 제작과정</a></li>
+									</ul>
+									<div class="sort-line"></div>
+									<ul>
+										<li><a href="#" class="sub-tit">LOUISVILLE SLUGGER</a></li>
+										<li><a href="#">루이빌 슬러거 플레이어</a></li>
+										<li><a href="#">HISTORY</a></li>
+										<li><a href="#">실버 슬러거 AWARDS</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="h-main"><a href="/user/communitylist">COMMUNITY</a></li>
+						</ul>
+					</div>
+					<form class="flex search">
+						<input type="search" placeholder="검색" name="search">
+						<span class="search-btn"><i class="fas fa-search"></i></span>
+						<button type="submit"><i class="fas fa-search"></i></button>
+					</form>
+					<script type="text/javascript">
+					$(function(){
+						$(".search-btn").click(function(){
+							$(this).hide();
+							$(this).next().show();
+							$(this).prev().css("transform","scaleX(1)")
+						});
+					});
+					</script>
+				</div>
+			</nav>
+		</div>
+	</header>
+	
+	<footer th:fragment="footer">
+		<h1>푸터</h1>
+		<div class="wrap">
+			<section id="footer-info">
+				<div class="info-box flex evenly">
+					<ul class="info-style">
+						<li>
+							<a href="/log/login">로그인</a>
+						</li>
+						<li>
+							<a href="/log/join">회원가입</a>
+						</li>
+						<li>
+							<a href="#">매장찾기</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="info-style">
+						<a href="/cscenter/qna/list">고객센터</a>
+						</li>
+						<li class="sub-style">
+							<a href="#">주문 배송 조회</a>
+						</li>
+						<li class="sub-style">
+							<a href="#">취소/교환/반품/안내</a>
+						</li>
+						<li class="sub-style">
+							<a href="#">A/S 센터</a>
+						</li>
+						<li class="sub-style">
+							<a href="#">멤버십</a>
+						</li>
+						<li class="sub-style">
+							<a href="/cscenter/notice/notice">공지사항</a>
+						</li>
+						<li class="sub-style">
+							<a href="/cscenter/qna/list">FAQ</a>
+						</li>
+						<li class="sub-style">
+							<a href="#">1:1 문의</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="info-style">국가선택</li>
+						<li>
+							<div class="selectbox">
+								<label for="ex_select"><a href="#" class="korea"></a>대한민국(Korea)</label>
+								<select id="ex_select">
+									<option selected>대한민국(Korea)</option>
+									<option>UNITED STATES</option>
+									<option>UNITED KINGDOM</option>
+									<option>DEUTSCHLAND</option>
+								</select>
+							</div>
+						</li>
+					</ul>
+					<ul>
+						<li class="info-style">BASEBALL</li>
+						<li>
+							<div class="sns-icon">
+								<ul class="flex">
+									<li>
+										<a href="#" class="facebook"></a>
+									</li>
+									<li>
+										<a href="#" class="insta"></a>									
+									</li>
+									<li>
+										<a href="#" class="youtube"></a>
+									</li>
+									<li>
+										<a href="#" class="kakao"></a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="info-style">TENNIS</li>
+						<li>
+							<div class="sns-icon">
+								<ul class="flex">
+									<li>
+										<a href="#" class="facebook"></a>
+									</li>
+									<li>
+										<a href="#" class="insta"></a>
+									</li>
+									<li>
+										<a href="#" class="youtube"></a>
+									</li>
+									<li>
+										<a href="#" class="google_play"></a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section id="footer-subinfo">
+				<div class="wrap">
+					<div class="flex around">
+						<ul>
+							<li>(주) 아머스포츠코리아 대표 : 크라소파스칼장쟈크 고객만족센터 : 0000-1234 주소 : 서울특별시 노원구 덕릉로 459-18</li>
+							<li>사업자등록번호 : 000-111-111111 개인정보관리책임자 : 윤여운 통신판매 신고번호 : 제2021-서울노원-12345호</li>
+							<li>&copy 2021 YeoUn Spring Projects All rights reserved.</li>
+						</ul>
+						<ul>
+							<li class="subbox">
+								<a href="#">보증보험 가입사실 확인하기</a>
+							</li>
+							<li class="subbox">
+								<a href="#">통신판매사업자정보확인</a>
+							</li>
+						</ul>
+					</div>
+					<section>
+						<ol class="flex">
+							<li>
+								<a href="#">서비스 이용약관</a>
+							</li>
+							<li>
+								<a href="#">개인정보처리방침</a>
+							</li>
+							<li>
+								<a href="#">COOKIES</a>
+							</li>
+						</ol>
+					</section>
+				</div>			
+			</section>
+		</div>
+	</footer>
+</body>
+</html>

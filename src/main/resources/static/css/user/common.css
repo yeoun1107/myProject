@@ -1,0 +1,70 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('../css/common.css');
+
+main{
+	width: 1140px;
+	height: 1100px;
+	margin: 10px auto;
+}
+
+main .wrap{
+	width: 1140px;
+	height: 1100px;
+	margin: 10px auto;
+}
+
+main .wrap .content{
+	width: 100%;
+	height: 1100px;
+}
+
+#nav-bar{
+	width: 100%;
+	height: 100px;
+}
+
+#nav-bar ul{
+	align-items: center;
+}
+
+#nav-bar ul li{
+	margin: 20px 0 0 20px;
+}
+
+#nav-bar ul li:not(:last-child):after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-bottom: 1px solid #a9a9a9;
+	border-right: 1px solid #a9a9a9;
+	transform: rotate( -45deg );
+	margin-left: 7px;
+}
+
+main #community-board{
+	width: 1140px;
+    height: 1000px;
+    margin: -1010px auto 0;
+	background-color: #f9f9f9;
+}
+
+hr{width: 1140px;}
+.list{width: 1140px;}
+.list ul li:nth-child(1){width: 150px;}
+.list ul li:nth-child(2){width: 350px;}
+.list ul li:nth-child(3){width: 150px;}
+.list ul li:nth-child(4){width: 150px;}
+.list ul li:nth-child(5){width: 150px;}
+.list ul{border-bottom: 1px solid #a9a9a9;	padding: 0.5em 0;}
+.list>div>a{text-align: right;}
+.title{font-weight: 700}
+
+
+
+
+
+

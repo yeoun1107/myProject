@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<th:block th:include="/admin/common::head"/>
+<link rel="stylesheet" href="/common.css"> 
+</head>
+<body>
+	<main>
+		<h1>게시판 페이지</h1>
+		<div class="wrap flex">
+			<th:block th:insert="/admin/common::admin-menu"/>
+			<section id="admin-content">
+				<div class="wrap">
+					<h2 style="margin-bottom: 30px;">공지사항 등록</h2>
+					<form action="/admin/notice/write" method="post">
+						<p>
+							<input type="text"  name="subject" placeholder="제목을 입력하세요">        
+						</p>
+						<p>
+							<input type="hidden" sec:authentication="principal.name">					
+							<input type="hidden" name="writer" th:value="${#authentication.principal.name}">					
+						</p>
+						<p>
+							<textarea rows="5" cols="50" name="content"></textarea>					
+						</p>
+						<p>
+							<button type="submit">등록하기</button>
+						</p>
+					</form>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

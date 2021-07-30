@@ -1,0 +1,368 @@
+@charset "UTF-8";
+
+main .wrap{
+	width: 1140px;
+	height: 1330px;
+	margin: 10px auto;
+}
+
+main .wrap .content{
+	width: 100%;
+	height: 1330px;
+}
+/* //////////////////////// nav-var /////////////////////// */
+#nav-bar{
+	width: 100%;
+	height: 100px;
+}
+
+#nav-bar ul{
+	align-items: center;
+}
+
+#nav-bar ul li{
+	margin: 20px 0 0 20px;
+}
+
+#nav-bar ul li:not(:last-child):after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-bottom: 1px solid #a9a9a9;
+	border-right: 1px solid #a9a9a9;
+	transform: rotate( -45deg );
+	margin-left: 7px;
+}
+
+/* //////////////////////// job-title /////////////////////// */
+
+#join-title{
+	width: 100%;
+	height: 98px;
+	margin: 0 auto;
+}
+
+#join-title .title-box{
+	width: 460px;
+	height: 98px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#join-title .title-box div{
+	text-align: center;
+}
+
+#join-title .title-box span{
+	display: block;
+	width: 460px;
+	margin: 0 auto;
+}
+#join-title .title-box .jt{
+	font-size: 30px;
+	font-weight: 700;
+	color: #333; 
+}
+#join-title .title-box .subjt{
+	font-size: 16px;
+	color: #999;
+	margin-top: 10px;
+}
+
+/* //////////////////////// join-nav /////////////////////// */
+
+#join-nav{
+	width: 100%;
+	height: 75px;
+	margin: 0 auto;	
+}
+
+#join-nav .nav-box{
+	width: 460px;
+	height: 75px;
+	margin: 0 auto;
+}
+
+#join-nav .nav-box div{
+	text-align: center;
+}
+
+#join-nav .nav-box div .box-icon{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border: 1px solid #999;
+	border-radius: 8px;
+	border-width: 3px;
+	margin-top: 30px;
+}
+
+#join-nav .nav-box div .box-icon-now{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border: 1px solid #29abe1;
+	border-radius: 8px;
+	border-width: 3px;
+	margin-top: 30px;
+}
+
+#join-nav .nav-box div .box-icon2{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border: 1px solid #999;
+	border-radius: 8px;
+	border-width: 3px;
+	margin-top: 30px;
+}
+
+#join-nav .nav-box div .box-icon:after{
+	content: "";
+	display: block;
+	width: 141px;
+	height: 2px;
+	background-color: #999;
+	margin: 3px 0 0 12px;
+}
+
+#join-nav .nav-box div .box-icon-now:after{
+	content: "";
+	display: block;
+	width: 141px;
+	height: 2px;
+	background-color: #999;
+	margin: 3px 0 0 12px;
+}
+
+#join-nav .nav-box div .nav-con{
+	display: block;
+	font-size: 16px;
+	color: #999;
+}
+
+/* //////////////////////// join-form /////////////////////// */
+
+#join-form{
+	width: 460px;
+	height: 787px;	
+	margin: 0 auto;
+}
+
+#join-form form table{
+	width: 460px;
+	height: 787px;
+	margin: 0 auto;
+}
+
+#join-form form table tr .box input{
+	display:inline-block;
+	width: 314px;
+	height: 60px;
+    padding: 0 14px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    border-radius: 3px;
+    background: #fff;
+    outline: none;
+    vertical-align: top;
+}
+
+#join-form form table tr .box button{
+	display:inline-block;
+	width: 138px;
+	height: 60px;
+    line-height: 60px;
+    padding: 0 14px;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #333;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+    vertical-align: top;
+    text-align: center;
+}
+
+#join-form form table tr .fullbox input{
+	display:inline-block;
+	width: 455px;
+	height: 60px;
+    padding: 0 14px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    border-radius: 3px;
+    background: #fff;
+    outline: none;
+    vertical-align: top;
+}
+
+/* /////////////////////////////////////////////// */
+
+#join-form form table tr .checkgender label{
+	display: inline;
+	width: 332px;
+	height: 44px;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 20px;
+	color: #4c4c4c;
+	margin: 0 15px;
+}
+
+#join-form form table tr .checkgender label input[type="radio"]{
+	visibility: hidden;
+	display: none;
+}
+
+#join-form form table tr td label .round-icon{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	margin-right: 12px;
+	border: 1px solid #ddd;
+	border-radius: 100%;
+	vertical-align: -7px;
+}
+
+/* /////////////////////////////////////////////// */
+
+#join-form form table .birthbox{
+	border: 1px solid #ccc;
+	margin-top: 20px;	
+}
+
+#join-form form table tr .birth{
+	display: flex;
+	align-content: center;
+	vertical-align: middle;
+	width: 456px;
+	height: 60px;
+}
+
+#join-form form table tr .birth input{
+	display: inline-block;
+	margin: 2px auto;
+	text-align: center;
+	border: none;
+	outline: none;
+	width: 456px;
+	height: 57px;
+	color: #a9a9a9;	
+}
+
+#join-form form table tr .birth span{
+	line-height: 60px;
+	color: #333;
+	font-weight: 700;
+}
+
+/* /////////////////////////////////////////////// */
+
+#join-form form table tr .checkbirth{
+	display: block;
+	margin-top: -40px;
+}
+
+#join-form form table tr .checkbirth label{
+	display: inline;
+	width: 332px;
+	height: 44px;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 20px;
+	color: #4c4c4c;
+	margin: 0 15px;
+}
+
+#join-form form table tr .checkbirth label input[type="radio"]{
+	visibility: hidden;
+	display: none;
+}
+
+/* //////////////////////////////////////////////////////// */
+
+#join-form form table .phonebox{
+	border: 1px solid #ccc;
+	margin-top: 20px;	
+}
+
+#join-form form table tr .phone{
+	display: flex;
+	align-content: center;
+	vertical-align: middle;
+	width: 456px;
+	height: 60px;
+}
+
+#join-form form table tr .phone input{
+	display: inline-block;
+	margin: 2px auto;
+	text-align: center;
+	border: none;
+	outline: none;
+	width: 456px;
+	height: 57px;
+	color: #a9a9a9;	
+}
+
+#join-form form table tr .phone span{
+	line-height: 60px;
+	color: #666;
+	font-weight: 700;
+}
+
+/* /////////////////////////////////////////////// */
+
+#join-button{
+	width: 100%;
+	height: 190px;	
+	margin: 0 auto;
+
+}
+
+#join-button .join-button-box{
+	width: 460px;
+	height: 190px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 1em 0;
+}
+
+#join-button .join-button-box .back-button{
+	width: 460px;
+	height: 60px;
+	margin: 10px auto;
+	border: 1px solid #333;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#join-button .join-button-box .decide-button{
+	width: 460px;
+	height: 60px;
+	margin: 0 auto;
+	background-color: #cf102d;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#join-button .join-button-box .decide-button button{
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+

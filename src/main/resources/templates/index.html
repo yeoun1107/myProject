@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons::head"></th:block>
+	<link rel="stylesheet" href="/css/index.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+         getList();   
+      });
+      function getList(){
+         $.ajax({
+            url: "/index",
+            type: "get",
+            success: function(result){   
+               $("#result").html(result);   
+            }
+         });
+      } 
+	</script>
+</head>
+<body>
+	<th:block th:insert="/common/commons::header"></th:block>
+	<main>
+		<h1>메인content</h1>
+		<div class="wrap">
+			<section class="post-slider">
+				<i class="fas fa-chevron-left prev"></i>
+				<i class="fas fa-chevron-right next"></i>
+				<div class="main1 post-wrapper">
+					<div class="post">
+						<img src="./images/mainpost6.jpg" class="slider-image">
+					</div>
+					<div class="post">
+						<img src="./images/mainpost2.jpg" class="slider-image">
+					</div>
+					<div class="post">
+						<img src="./images/mainpost3.jpg" class="slider-image">
+					</div>
+					<div class="post">
+						<img src="./images/mainpost4.jpg" class="slider-image">
+					</div>
+					<div class="post">
+						<img src="./images/mainpost5.jpg" class="slider-image">
+					</div>
+				</div>
+			</section>
+			<script type="text/javascript">
+			$(".post-wrapper").slick({
+				infinite: true,
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				autoplay: true,
+				autoplaySpeed: 2000,
+				arrows: true,
+				dots: true,
+				pauseonHover: true,
+				nextArrow: $(".next"),
+				prevArrow: $(".prev"),
+				dotsClass: "slick-dots"
+			});
+			</script>
+			
+			<section class="main2">
+				<div class="main2-item">
+					<ul class="flex">
+						<li>
+							<a href="#" class="mitem1"></a>
+						</li>
+						<li>
+							<a href="#" class="mitem2"></a>
+						</li>
+					</ul>
+				</div>
+			</section>
+			
+			<section class="main3">
+				<div class="recom-item">
+					<div class="recom-title">
+						<h2>추천 상품</h2>
+					</div>
+					<div id="result" style="height: 560px;">
+					</div>
+					
+					<!-- <div class="recom-list">
+						<ul class="flex evenly">
+							<li>
+								<div>
+								<a href="#">
+									<img src="./images/recom1.png">
+								</a>
+								<span>윌슨 2021 한정판 A2000 1786 USA 11.5" 내야수 글러브-우투</span>
+								<a href="#" class="pur-btn">구매하기</a>
+								</div>
+							</li>
+							<li>
+								<div>
+								<a href="#">
+									<img src="./images/recom2.png">
+								</a>
+								<span>윌슨 2021 KOR A2K 1785 11.75" 수퍼스킨 내야수 글러브</span>
+								<a href="#" class="pur-btn">구매하기</a>
+								</div>
+							</li>
+							<li>
+								<div>
+								<a href="#">
+									<img src="./images/recom3.png">
+								</a>
+								<span>윌슨 2021 A2000 1620SS 12.5" 1루수 미트</span>
+								<a href="#" class="pur-btn">구매하기</a>
+								</div>
+							</li>
+							<li>
+								<div>
+								<a href="#">
+									<img src="./images/recom4.png">
+								</a>
+								<span>드마리니 2021 CF 컴포짓 배트 (5드랍)</span>
+								<a href="#" class="pur-btn">구매하기</a>
+								</div>
+							</li>
+						</ul>
+					</div> -->
+				</div>
+			</section>
+			<section class="main4">
+				<div class="player">
+					<a href="#"></a>
+				</div>
+			</section>
+		</div>
+	</main>
+	<th:block th:insert="/common/commons::footer"></th:block>
+</body>
+
+</html>

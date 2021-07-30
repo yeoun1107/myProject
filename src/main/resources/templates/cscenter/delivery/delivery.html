@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/csscenter/delivery/delivery.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/cscenter/qna/list">고객센터</a>
+						</li>
+						<li>
+							<a href="/cscenter/delivery/delivery">배송안내</a>
+						</li>
+					</ul>
+				</section>
+				<th:block th:insert="~{cscenter/qna/list :: list}"></th:block>
+			</div>
+		</div>
+		<section id="delivery">
+			<h2>배송안내</h2>
+		</section>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block> 
+</body>
+</html>

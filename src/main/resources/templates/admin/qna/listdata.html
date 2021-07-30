@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<script type="text/javascript">
+	$(function(){        //페이지가 로딩되는 시점에서 클릭 이벤트 등록
+		$("#paging button").click(function(){
+			pageNo=$(this).text().trim();
+			getQnaList(div);
+		});    
+	});
+</script>
+<p th:if="${#lists.isEmpty(list)}">
+	게시글이 존재하지 않습니다.
+</p>
+<dl th:if="${not #lists.isEmpty(list)}" th:each="dto : ${list}">
+  <!-- QnaSeriviceImpl의 89 : model.addAttribute("list",list); 에서 왼쪽 "list" -->
+	<dt>
+		<span th:text="${dto.division}">구분</span>
+		<span class="que">
+			<span>
+				<input type="text" class="question" th:value="${dto.question}" disabled>
+			</span>
+		</span>
+		<!-- ${dto.division}, ${dto.question}은 QnaResultDto에 get메소드가 있으니까 가능한 것. -->
+	</dt>
+	<dd>
+		<input type="text" class="answer" th:value="${dto.answer}" disabled="disabled">
+	</dd>
+	<dd>
+		<button class="btn-edit">수정</button>
+		<span class="btn-edit-able" style="display: none;">
+			<button class="btn-edit-done">수정완료</button>
+			<button class="btn-edit-cancel">수정취소</button>
+		</span>
+		<button class="btn-del">삭제</button>
+		<input type="hidden" class="no" th:value="${dto.no}">
+	</dd>
+</dl>
+<div class="flex" id="paging" th:if="${!#lists.isEmpty(list)}">
+	<button th:each="pno: ${#numbers.sequence(1,to)}">     <!-- ${#numbers.sequence(1,to)} : thymeleaf에서 지원해주는 페이징 유틸리티 -->
+		[[${pno}]]
+	</button>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//삭제버튼 클릭시
+		$(".btn-del").click(function(){
+			var _no=$(this).next().val(); // next : 선택된 삭제 버튼 다음에 있는 태그인 input태그를 선택하는 선택자
+			$.ajax({
+				url:"/admin/qna/"+_no,
+				type: "delete",
+				success:function(result){
+					getQnaList(div);
+				}
+			});
+		});
+		//수정버튼 클릭시 -> 수정할 수 있도록 활성화
+		$(".btn-edit").click(function(){
+			$(this).hide();
+			$(this).next().show();
+			$(this).parents("dl").find("input:disabled").removeAttr("disabled");
+		});
+		//수정취소 버튼 클릭시 -> 수정 비활성화
+		$(".btn-edit-cancel").click(function(){
+			$(this).parent().hide();
+			$(this).parents("dd").find(".btn-edit").show();
+			$(this).parents("dl").find("input[type=text]").attr("disabled",true);
+		});
+		//수정완료 버튼 클릭 시 -> DB 수정처리
+		$(".btn-edit-done").click(function(){
+			//수정된 질문과 답변 값을 읽어오는게 우선.  수정될 대상 : pk값 no
+			var question=$(this).parents("dl").find(".question").val().trim();
+			var answer=$(this).parents("dl").find(".answer").val().trim();
+			var no=$(this).parents("dl").find(".no").val();
+			
+			$.ajax({
+				url:"/admin/qna/"+no,
+				data:{"question":question,"answer":answer},        //왼쪽 question은 input의 클래스 이름 속성 , 오른쪽 question은 71라인 변수 값을 받은 var question
+				type:"put",
+				success:function(){
+					pageNo=1;
+					getQnaList(div);
+				}
+			});
+		});
+		
+	});
+</script>
+
+</html>

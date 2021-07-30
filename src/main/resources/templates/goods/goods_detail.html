@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/goods/goodsdetail.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>
+	<main>
+		<div class="wrap">
+			<div class="content">
+				<section class="detail-div flex between">
+					<div class="detail-img">
+						<a>
+							<img th:src="${detail.fileUrl + detail.fileName}">
+						</a>
+						<div class="detail-img-btn">
+							<img src="../../images/goodsdetailbtn.png">
+							<a href="#">확대보기</a>
+						</div>
+					</div>
+					<div class="detail-info">
+						<div class="detail-info-title">
+							<span th:text="${detail.title}"></span>
+						</div>
+						<div class="detail-info-sub">	
+							<span style="color: #eb6715;">상품가 :  </span>
+							<span th:text="${#numbers.formatDecimal(detail.price, 0, 'COMMA', 0, 'POINT')}"></span>
+							<span>원</span>
+						</div>
+						<div class="detail-info-sub">
+							<span style="color: #eb6715;">할인가 :  </span>
+							<span th:text="${#numbers.formatDecimal(detail.price-detail.saleprice, 0, 'COMMA', 0, 'POINT')}"></span>
+							<span>원</span>
+						</div>	
+						<div class="detail-info-sub">
+							<span style="color: #eb6715;">잔여수량 :  </span>
+							<span th:text="${detail.quantity}"></span>
+							<span>개</span>
+						</div>
+						<div class="goods-btn flex evenly">
+							<a href="/goods/goods_delievery" class="direct-btn">바로구매</a>
+							<a href="#" class="cart-btn">장바구니</a>
+						</div>
+						<div style="padding: 20px 0; border-bottom: 1px solid #eee; width: 550px;"></div>
+						<div style="margin-top: 20px;">
+							<ul class="grid2">
+								<li class="card">
+									<img src="../../images/card.png">
+									<a href="#">카드혜택</a>
+								</li>
+								<li>
+									<img src="../../images/member.png">
+									<a href="#">신규가입회원 10%할인</a>
+								</li>
+								<li>
+									<img src="../../images/truck.png">
+									<a href="#">전 제품 무료배송</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="detail-tab"></section>
+				<section class="detail-content"></section>
+			</div>
+		</div>
+	</main>
+	<th:block th:insert="~{common/commons :: footer}">메뉴가 삽입됩니다.</th:block>
+</body>
+</html>

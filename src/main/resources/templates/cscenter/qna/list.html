@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="common/commons :: head"></th:block>
+	<link rel="stylesheet" href="/css/csscenter/qna/list.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var div=0;
+		var pno=1;
+		$(function(){
+			faqList(0);
+			$("#sub li").click(function(){
+				pno=1;
+				div=$(this).index();
+				faqList(div);
+			});
+		});
+		// faq shop이용 data
+		function faqList(division){
+			
+			$.ajax({
+				url: "/cscenter/qna/"+division,
+				data: {page : pno},
+				type: "get",
+				success: function(result){
+					$(".listdata").html(result);
+				}
+			});
+			/*
+			$.get("/cscenter/qna/"+division,
+					function(result){
+						$(".listdata").html(result);
+			});
+			*/
+		}
+	</script>
+</head>
+<body>
+	<th:block th:insert="~{common/commons :: header}">메뉴가 삽입됩니다.</th:block>	
+	<main>
+		<h1>고객센터 FAQ 페이지</h1>
+		<div class="wrap">
+			<div class="content">
+				<section id="nav-bar">
+					<ul class="flex">
+						<li>
+							<a href="/">HOME</a>
+						</li>
+						<li>
+							<a href="/cscenter/qna/list">고객센터</a>
+						</li>
+						<li>
+							<a href="/cscenter/qna/list">FAQ</a>
+						</li>
+					</ul>
+				</section>
+				<div style="margin: 0 0 20px 215px;">
+					<h2 style="font-size: 30px;">FAQ</h2>
+				</div>
+				<div class="flex" th:fragment="list">
+					<div class="faq-left">
+						<section id="faq1">
+							<div>
+								<a href="/cscenter/qna/list">고객센터</a>
+							</div>
+						</section>
+						<section id="faq2">
+							<div class="faq-title">
+								<ul>
+									<li><a class="ti1" href="/cscenter/qna/list">FAQ</a></li>
+									<li><a class="ti2" href="/cscenter/notice/notice">공지사항</a></li>
+									<li><a class="ti3" href="/cscenter/oneonone/oneonone">1:1문의</a></li>
+									<li><a class="ti4" href="/cscenter/delivery/delivery">배송안내</a></li>
+									<li><a class="ti5" href="/cscenter/as/as">A/S센터</a></li>
+								</ul>
+							</div>
+						</section>
+					</div>
+					<section id="faq3">
+						<div class="faq-search">
+							<div class="faq-wrap-input">
+								<input type="text" class="faq-input" placeholder="궁금하신 사항은 FAQ를 검색해보세요.">
+							</div>
+							<input type="submit" class="faq-button">
+						</div>
+						<div class="faq-subtitle">
+							<ul id="sub" class="flex around">
+								<li>매장 이용</li>
+								<li>Y.POINT</li>
+								<li>회원</li>
+								<li>멤버십</li>
+								<li>온라인</li>
+								<li>할인혜택</li>
+								<li>스토어</li>
+								<li>커스텀제작</li>
+							</ul>
+							<div class="listdata">
+								<!-- 여기가 listdata가 들어갈 영역입니다. -->
+							</div>
+						</div>
+					</section>
+					<script type="text/javascript">
+						$(function(){
+							$(".faq-subtitle ul li").eq(0).addClass("choice");
+							$(".faq-subtitle ul li").click(colorEvent);
+						});
+						
+						function colorEvent(){
+							var idx=$(this).index();
+							$(".faq-subtitle ul li").removeClass("choice");
+							$(this).addClass("choice");
+						}
+					</script>
+				</div>
+			</div>
+		</div>
+	</main>
+	<th:block th:include="~{common/commons :: footer}"></th:block> 
+</body>
+</html>

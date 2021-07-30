@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<div class="flex">
+	<ul>
+		<li th:each="dto : ${list}" th:value="${dto.categoryCode}" class="second-ca">
+			<span>[[${dto.categoryName}]]</span>
+		</li>
+	</ul>
+	<div class="second-next"></div>
+</div>
+<script th:inline="javascript">
+	$(function(){
+		second=0;
+		$(".second-ca").click(cateClicked);
+		$(".second-ca").mouseover(function(){
+			second=$(this).val();
+			$.ajax({
+				url: "/admin/product/menu/"+first+"/"+second,
+				success:function(result){
+					$(".second-next").html(result);
+				}
+			});
+			
+		});
+	});
+	
+	
+	
+</script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<th:block th:include="/admin/common::head"/>
+<style type="text/css">
+	#file{
+	display: none;
+	}
+	.file-box{
+		display: inline-block;
+		width: 300px;
+		height: 150px;
+		border: 2px solid aqua;
+		text-align: center;
+		color: aqua;
+		line-height: 150px;
+		font-size: 24px;
+		font-weight: 700;
+		cursor: pointer;
+		background-color: rgba(0,255,255,0.05);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+	
+</style>
+<script type="text/javascript">
+	$(function(){
+		// Visual 이미지 파일이 선택되었을 때 이벤트
+		$("#file").change(function(){
+			var fileInfo=$("#file")[0].files[0];
+			//console.log(fileInfo);
+			var formData=new FormData();
+			formData.append("tempFile",fileInfo);
+			/* formData.append("no", $("#title").val()); */
+			
+			
+			$.ajax({
+				url: "/admin/visual/temp",
+				type: "post",
+				data: formData,
+				contentType:false,
+				processData:false,
+				success:function(result){
+					//alert("result : "+result);
+					if(result==null){
+						alert("파일의 크기가 너무 큽니다.");
+					}else{
+						$(".file-box").css("background-image","url("+result+")");
+					}
+				}
+			});
+			
+		});
+	});
+</script>
+</head>
+<body>
+	<main>
+		<h1>관리자페이지입니다.</h1>
+		<div class="wrap flex">
+			<th:block th:insert="/admin/common::admin-menu"/>
+			<section id="admin-content">
+				<h1>내용</h1>
+				<div class="wrap">
+					<p>메인 Visual images 등록페이지 입니다.</p>
+					<form action="/admin/visual/write2" method="post" enctype="multipart/form-data">
+						<p>
+							<label for="file" class="file-box">+</label>
+							<input id="file" type="file" name="file">
+						</p>
+						<p>
+							<input id="title" type="text" name="title">
+						</p>
+						<p>
+							<input type="text" name="link">
+						</p>
+						<p>
+							<button type="submit">등록</button>
+						</p>
+					</form>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

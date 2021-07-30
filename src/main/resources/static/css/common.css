@@ -1,0 +1,49 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+*{
+	margin: 0; 
+	padding: 0; 
+	color: #222; 
+	font-family: 'Roboto','Noto Sans KR', sans-serif;
+	box-sizing: border-box;
+}
+
+a{text-decoration: none; color: #222; cursor: pointer;}
+
+h1{position: absolute; left: -9999px;}
+
+li{list-style: none;}
+
+.view-size{width: 1140px; margin: 0 auto;}
+
+.flex{display: flex;}
+
+.center{justify-content: center;}
+
+.between{justify-content: space-between;}
+
+.around{justify-content: space-around;}
+
+.evenly{justify-content: space-evenly;}
+
+.column{flex-direction: column;}
+
+.end{justify-content: flex-end;}
+
+.login-err{
+	background-color: #cf102d;
+	color: #fff;
+	font-size: 12px;
+	padding: 1em 0;
+	margin-top: 10px;
+}
+.welcome{
+	background-color: green;
+	color: #fff;
+	font-size: 12px;
+	padding: 1em 0;
+	margin-top: 10px;
+}
